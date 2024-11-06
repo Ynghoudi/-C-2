@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+
+struct Point {
+    double x;
+    double y;
+};
+
+double distanceSquared(const Point& p1, const Point& p2) {
+    return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
+}
+
+std::string triangleType(const Point& A, const Point& B, const Point& C) {
+    double AB2 = distanceSquared(A, B);
+    double AC2 = distanceSquared(A, C);
+    double BC2 = distanceSquared(B, C);
+
+    double a2 = AB2;
+    double b2 = AC2;
+    double c2 = BC2;
+    
+    if (a2 > b2) std::swap(a2, b2);
+    if (a2 > c2) std::swap(a2, c2);
+    if (b2 > c2) std::swap(b2, c2);
+
+    if (c2 == a2 + b2) {
+        return "Прямоугольный";
+    } else if (c2 > a2 + b2) {
+        return "Тупоугольный";
+    } else {
+        return "Остроугольный";
+    }
+}
+
+int main() {
+    Point A, B, C;
+
+    std::cout << "Введите координаты точки A (xa ya): ";
+    std::cin >> A.x >> A.y;
+    std::cout << "Введите координаты точки B (xb yb): ";
+    std::cin >> B.x >> B.y;
+    std::cout << "Введите координаты точки C (xc yc): ";
+    std::cin >> C.x >> C.y;
+
+    std::cout << "Треугольник является: " << triangleType(A, B, C) << std::endl;
+
+    return 0;
+}
