@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+bool isTriangle(double a, double b, double c) {
+    return (a + b > c) && (a + c > b) && (b + c > a);
+}
+
+string triangleType(double a, double b, double c) {
+    double maxSide = max(max(a, b), c);
+    double sumOfSquares = a * a + b * b + c * c;
+
+    double squareOfMaxSide = maxSide * maxSide;
+
+    if (sumOfSquares - squareOfMaxSide < 0) {
+        return "Тупоугольный";
+    } else if (sumOfSquares - squareOfMaxSide == 0) {
+        return "Прямоугольный";
+    } else {
+        return "Остроугольный";
+    }
+}
+
+int main() {
+    double a, b, c;
+
+    cout << "Введите длины сторон треугольника (a, b, c): ";
+    cin >> a >> b >> c;
+
+    if (isTriangle(a, b, c)) {
+        string type = triangleType(a, b, c);
+        cout << "Треугольник является: " << type << endl;
+    } else {
+        cout << "Треугольника с такими сторонами не существует." << endl;
+    }
+
+    return 0;
+}
