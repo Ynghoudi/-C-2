@@ -1,0 +1,17 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    double r, p, q;
+    cin >> r >> p >> q;
+
+    if (r <= sqrt(p * p / 4 + q * q / 4)) {
+        cout << "YES" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
+
+    return 0;
+}
