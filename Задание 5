@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+struct Point {
+    double x;
+    double y;
+};
+
+double distance(const Point&amp; p1, const Point&amp; p2) {
+    return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+}
+
+bool isParallel(const Point&amp; p1, const Point&amp; p2, const Point&amp; p3, const Point&amp; p4) {
+    double dx1 = p2.x - p1.x;
+    double dy1 = p2.y - p1.y;
+    double dx2 = p4.x - p3.x;
+    double dy2 = p4.y - p3.y;
+
+    return (dx1 * dy2 - dy1 * dx2) < 1e-6;
+}
+
+string getQuadrilateralType(const Point&amp; p1, const Point&amp; p2, const Point&amp; p3, const Point&amp; p4) {
+    double a = distance(p1, p2);
+    double b = distance(p2, p3);
+    double c = distance(p3, p4);
+    double d = distance(p4, p1);
+
+    if (isParallel(p1, p2, p3, p4) &amp;&amp; isParallel(p2, p3, p4, p1) &amp;&amp; a == c &amp;&amp; b == d) {
+        return "Прямоугольник";
+    }
+
+    else if (isParallel(p1, p2, p3, p4) &amp;&amp; isParallel(p2, p3, p4, p1)) {
+        return "Параллелограмм";
+    }
+
+    else if (isParallel(p1, p2, p3, p4) || isParallel(p2, p3, p4, p1)) {
+        return "Трапеция";
+    }
+
+    else {
+        return "Произвольный четырехугольник";
+    }
+}
+
+int main() {
+    Point p1, p2, p3, p4;
+    cout << "Введите координаты вершин четырехугольника (x, y):" << endl;
+    cin >> p1.x >> p1.y;
+    cin >> p2.x >> p2.y;
+    cin >> p3.x >> p3.y;
+    cin >> p4.x >> p4.y;
+
+    string type = getQuadrilateralType(p1, p2, p3, p4);
+
+    cout << "Тип четырехугольника: " << type << endl;
+
+    return 0;
+}
