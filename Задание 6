@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cout << "Введите размеры кирпича (a, b, c): ";
+    cin >> a >> b >> c;
+
+    int r, s;
+    cout << "Введите размеры отверстия (r, s): ";
+    cin >> r >> s;
+
+    bool проходит = false;
+    if (a <= r &amp;&amp; b <= s) проходит = true;
+    if (a <= s &amp;&amp; c <= r) проходит = true;
+    if (b <= r &amp;&amp; c <= s) проходит = true;
+
+    if (проходит)
+        cout << "Кирпич пройдет сквозь отверстие." << endl;
+    else
+        cout << "Кирпич не пройдет сквозь отверстие." << endl;
+
+    return 0;
+}
