@@ -1,0 +1,32 @@
+#include 
+<iostream>
+
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cin >> a >> b >> c;
+
+    bool isTriangle = false;
+
+    for (int x = 1; x <= a; x++) {
+        for (int y = 1; y <= b; y++) {
+            for (int z = 1; z <= c; z++) {
+                if (a == x + y &amp;&amp; b == y + z &amp;&amp; c == x + z) {
+                    isTriangle = true;
+                    break;
+                }
+            }
+            if (isTriangle) {
+                break;
+            }
+        }
+        if (isTriangle) {
+            break;
+        }
+    }
+
+    cout << (isTriangle ? "Yes" : "No") << endl;
+
+    return 0;
+}
