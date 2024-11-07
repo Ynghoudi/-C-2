@@ -1,0 +1,23 @@
+#include <iostream>
+
+int main() {
+  int A, B, C, R, S, T;
+  std::cin >> A >> B >> C >> R >> S >> T;
+
+  bool can_pack = false;
+  if (R <= A &amp;&amp; (S + T <= B || S + T <= C)) {
+    can_pack = true;
+  } else if (S <= A &amp;&amp; (R + T <= B || R + T <= C)) {
+    can_pack = true;
+  } else if (T <= A &amp;&amp; (R + S <= B || R + S <= C)) {
+    can_pack = true;
+  }
+
+  if (can_pack) {
+    std::cout << "YES" << std::endl;
+  } else {
+    std::cout << "NO" << std::endl;
+  }
+
+  return 0;
+}
